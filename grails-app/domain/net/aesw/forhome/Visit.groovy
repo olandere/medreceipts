@@ -11,5 +11,10 @@ class Visit {
 	Boolean entryComplete
 	
     static constraints = {
+		dateOfVisit(blank: false, unique:['provider','person','copay'])
+		provider(blank: false)
+		person(blank: false)
     }
+	
+	String toString() { "On ${dateOfVisit}, ${person} visited ${provider}, paid ${copay}" }
 }
