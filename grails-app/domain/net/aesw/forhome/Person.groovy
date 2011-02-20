@@ -6,5 +6,9 @@ class Person {
 	Address address
 	
     static constraints = {
+		name(blank: false)
+		address(blank: false)
     }
+	
+	String toString() { "${name}" }
 }
