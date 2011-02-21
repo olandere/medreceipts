@@ -7,6 +7,7 @@ class Address {
 	String city
 	String usstate
 	Integer zip
+	Float miles
 	
     static constraints = {
 		address1(blank: false)
