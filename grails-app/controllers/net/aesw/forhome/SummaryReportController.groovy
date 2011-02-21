@@ -12,7 +12,12 @@ class SummaryReportController {
 	//}
 	
 	def results = {
-    	def visits = Visit.executeQuery('from Visit v where year(v.dateOfVisit)=:year order by v.dateOfVisit', [year: Integer.valueOf(params.year)])
-		return[visits : visits, year : params.year]
+    	def visits = Visit.executeQuery('from Visit v where year(v.dateOfVisit)=:year and v.entryComplete != true order by v.dateOfVisit', [year: Integer.valueOf(params.year)])
+		
+		def sumFsa = Visit.executeQuery('select sum(v.copay) from Visit v where year(v.dateOfVisit)=:year and v.paidWithFSA = true', [year: Integer.valueOf(params.year)])
+		
+		def sumNotFsa = Visit.executeQuery('select sum(v.copay) from Visit v where year(v.dateOfVisit)=:year and v.paidWithFSA != true', [year: Integer.valueOf(params.year)])
+		
+		return[visits : visits, sumFsa : sumFsa[0], sumNotFsa : sumNotFsa[0], year : params.year]
 	}
 }

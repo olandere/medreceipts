@@ -16,5 +16,5 @@ class Visit {
 		person(blank: false)
     }
 	
-	String toString() { "On ${dateOfVisit}, ${person} visited ${provider}, paid ${copay}" }
+	String toString() { "On ${dateOfVisit}, ${person} visited ${provider}, paid ${copay}, FSA: ${paidWithFSA}, complete: ${entryComplete}" }
 }
