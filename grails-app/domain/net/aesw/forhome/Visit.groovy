@@ -6,8 +6,8 @@ class Visit {
 	Provider provider
 	Person person
 	Float copay
-	Boolean paidWithFSA
 	Boolean paidWithHSA
+	Boolean paidWithFSA
 	Boolean countMilage
 	Boolean entryComplete
 	String note
@@ -17,11 +17,11 @@ class Visit {
 		provider(blank: false)
 		person(blank: false)
 		copay(blank: false)
+		paidWithHSA(nullable:false)
 		paidWithFSA(nullable:false)
 		paidWithFSA validator: {val, obj ->
 			if (val && obj.properties['paidWithHSA']){ return ['visit.error.only.one.paid.flag.can.be.set']} }
-		paidWithHSA(nullable:false)
     }
 	
-	String toString() { "On ${dateOfVisit}, ${person} visited ${provider}, paid ${copay}, FSA: ${paidWithFSA}, HSA: ${paidWithHSA}, complete: ${entryComplete}" }
+	String toString() { "On ${dateOfVisit}, ${person} visited ${provider}, paid ${copay}, HSA: ${paidWithHSA}, FSA: ${paidWithFSA}, complete: ${entryComplete}" }
 }
